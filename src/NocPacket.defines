@@ -1,0 +1,48 @@
+`define wNocSize 6
+
+`define NocRouteIdParamsD numeric type wInit, numeric type wTarg, numeric type wSeq
+
+`define NocRouteIdParams wInit, wTarg, wSeq
+
+`define NocRouteIdG NocRouteId#(`NocRouteIdParams)
+
+
+`define NocHeaderParamsD numeric type wPri, numeric type wInit, numeric type wTarg, numeric type wSeq, numeric type wLen, numeric type wAddr, numeric type wUser, numeric type wCtx
+
+`define NocHeaderParams wPri, wInit, wTarg, wSeq, wLen, wAddr, wUser, wCtx
+
+`define NocHeaderG NocHeader#(`NocHeaderParams)
+
+`define NocTransHeaderG NocTransHeader#(`NocHeaderParams)
+
+`define NocPayloadParamsD numeric type nBytes
+
+`define NocPayloadG(nBytes) NocPayload#(nBytes)
+
+`define NocTransPayloadG(nBytes) NocTransPayload#(nBytes)
+
+`define NocPayloadWG(nChunks, nBytes) NocPayloadW#(nChunks, nBytes)
+
+`define NocTransPayloadWG(nChunks, nBytes) NocTransPayloadW#(nChunks, nBytes)
+
+
+`define NocPacketParamsD `NocHeaderParamsD
+
+`define NocPacketParams `NocHeaderParams
+
+`define NocPacketG(nBytes) NocPacket#(`NocPacketParams, nBytes)
+
+`define NocFlitG(nBytes) NocFlit#(`NocPacketParams, nBytes)
+
+`define NocFlitWG(nChunks, nBytes) NocFlitW#(`NocPacketParams, nChunks, nBytes)
+
+`define NocFlitAG(nBytes) NocFlitA#(nBytes)
+
+`define NocFlitAWG(nChunks, nBytes) NocFlitAW#(nChunks, nBytes)
+
+`define NocPacketItemG(nChunks, nBytes) NocPacketItem#(`NocPacketParams, nChunks, nBytes)
+
+`define ModuleWithNocPacketG ModuleWithNocPacket#(`NocPacketParams)
+
+import Packet::*;
+`define NocPacketP(h, p) Packet#(`NocPacketG, h, p, t)
